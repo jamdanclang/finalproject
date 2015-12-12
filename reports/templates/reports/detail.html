@@ -1,0 +1,157 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>UNL Key-Card Access Data Project</title>
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Building access to UNL's Residence Halls after midnight.</h1>
+        <p>Using data to see which halls come home the latest. </p>
+        <p class="view"> By: <a href="https://www.jamdanclang.github.io">Jamdan Clang</a></p>
+       
+      </header>
+      <section>
+        <h2> {{building}} </h2>
+
+
+<h3> Number of students who accessed {{building}} between 12 a.m. and 6:30 a.m. for each day. </h3>
+
+
+ 
+<!-- *******The Graph Code********* -->          
+<div id="graphDiv1"></div>
+	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+	<script src="/static/js/html5-canvas-bar-graph.js"></script>
+	<script>(function () {
+	
+		function createCanvas(divName) {
+			
+			var div = document.getElementById(divName);
+			var canvas = document.createElement('canvas');
+			div.appendChild(canvas);
+			if (typeof G_vmlCanvasManager != 'undefined') {
+				canvas = G_vmlCanvasManager.initElement(canvas);
+			}	
+			var ctx = canvas.getContext("2d");
+			return ctx;
+		}
+		
+	
+		
+		var ctx2 = createCanvas("graphDiv1");
+		
+		var graph2 = new BarGraph(ctx2);
+		graph2.margin = 2;
+		graph2.width = 850;
+		graph2.height = 150;
+		graph2.xAxisLabelArr = [{% for object in reports %}"{{ object.date|date:"D" }}",{% endfor %}];
+		setInterval(function () {
+			graph2.update([{% for object in reports %}{{ object.access }},{% endfor %}]);
+		}, 1500);
+
+	}());</script>          
+<!-- ***********The Graph Code End*********** -->        
+
+<section> 
+<h3> Total number of entries to each building from 11/8 to 11/20. </h3>
+          
+
+          
+<!-- ***********The Total Entries Graph Code *********** -->
+          
+          <div id="graphDiv2"></div>
+	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+	<script src="/static/js/html5-canvas-bar-graph.js"></script>
+	<script>(function () {
+	
+		function createCanvas(divName) {
+			
+			var div = document.getElementById(divName);
+			var canvas = document.createElement('canvas');
+			div.appendChild(canvas);
+			if (typeof G_vmlCanvasManager != 'undefined') {
+				canvas = G_vmlCanvasManager.initElement(canvas);
+			}	
+			var ctx = canvas.getContext("2d");
+			return ctx;
+		}
+		
+	
+		
+		var ctx2 = createCanvas("graphDiv2");
+		
+		var graph2 = new BarGraph(ctx2);
+		graph2.margin = 2;
+		graph2.width = 850;
+		graph2.height = 150;
+		graph2.xAxisLabelArr = ["Burr", "Fedde", "Love", "Neihardt", "Selleck", "Abel", "Harper", "Schramm", "Smith", "Knoll", "U. Suites", "Eastside", "Kauffman", ];
+		setInterval(function () {
+			graph2.update([ 219, 53, 35, 435, 498, 1849, 741, 679, 757, 713, 901, 381, 88, ]);
+		}, 1500);
+
+	}());</script>  
+          
+<!-- ***********The Total Entries Graph Code End*********** -->         
+                
+<section>
+<h3> Total number of residents for each hall as of Fall 2015. </h3>          
+
+
+<!-- ***********The Total Population Graph Code *********** -->
+          
+          <div id="graphDiv3"></div>
+	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+	<script src="/static/js/html5-canvas-bar-graph.js"></script>
+	<script>(function () {
+	
+		function createCanvas(divName) {
+			
+			var div = document.getElementById(divName);
+			var canvas = document.createElement('canvas');
+			div.appendChild(canvas);
+			if (typeof G_vmlCanvasManager != 'undefined') {
+				canvas = G_vmlCanvasManager.initElement(canvas);
+			}	
+			var ctx = canvas.getContext("2d");
+			return ctx;
+		}
+		
+	
+		
+		var ctx2 = createCanvas("graphDiv3");
+		
+		var graph2 = new BarGraph(ctx2);
+		graph2.margin = 2;
+		graph2.width = 850;
+		graph2.height = 150;
+		graph2.xAxisLabelArr = ["Burr", "Fedde", "Love", "Neihardt", "Selleck", "Abel", "Harper", "Schramm", "Smith", "Knoll", "U. Suites", "Eastside", "Kauffman", ];
+		setInterval(function () {
+			graph2.update([ 138, 25, 27, 380, 401, 1344, 421, 407, 403, 545, 498, 503, 119, ]);
+		}, 1500);
+
+	}());</script>  
+          
+<!-- ***********The Total Entries Graph Code End*********** -->
+
+
+
+      </section>
+      <footer>
+        <p><small>A special thanks to Amanda Orr for helping me get this data. </small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

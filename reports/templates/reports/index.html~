@@ -1,0 +1,133 @@
+
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>UNL Key-Card Access Data Project</title>
+
+    <link rel="stylesheet" href="/static/css/styles.css">
+    <link rel="stylesheet" href="/static/css/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Building access to UNL's Residence Halls after midnight.</h1>
+<!-- *******link back to homepage********* <a href="/reports/index.html">Building access to UNL's Residence Halls after midnight.</a> -->
+        <p>Using data to see which halls come home the latest. </p>
+        <p class="view"> By: <a href="https://www.jamdanclang.github.io">Jamdan Clang</a></p>
+       
+      </header>
+      <section>
+        <h2>The Dorms</h2>
+
+<p>Below is a list of 13 residence halls at the University of Nebraska - Lincoln's city and east campuses.</p>
+
+
+
+<h3> 
+<ul style="list-style-type:none">
+
+{% for object in buildings %}
+<h3>
+<li>
+<a href="{{ object.get_absolute_url }}">{{ object.name }}</a>
+</li>
+</h3>
+{% endfor %}
+
+</ul>
+</h3>
+<p></p>
+
+
+ <h3> HELLO THIS IS A TEST </h3>
+<!-- *******The Graph Code********* -->          
+<div id="graphDiv2"></div>
+	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+	<script src="/static/js/html5-canvas-bar-graph.js"></script>
+	<script>(function () {
+	
+		function createCanvas(divName) {
+			
+			var div = document.getElementById(divName);
+			var canvas = document.createElement('canvas');
+			div.appendChild(canvas);
+			if (typeof G_vmlCanvasManager != 'undefined') {
+				canvas = G_vmlCanvasManager.initElement(canvas);
+			}	
+			var ctx = canvas.getContext("2d");
+			return ctx;
+		}
+		
+	
+		
+		var ctx2 = createCanvas("graphDiv2");
+		
+		var graph2 = new BarGraph(ctx2);
+		graph2.margin = 2;
+		graph2.width = 450;
+		graph2.height = 150;
+		graph2.xAxisLabelArr = ["Sun.", "Mon.", "Tues.", "Wed.", "Thurs.", "Fri.", "Sat.",];
+		setInterval(function () {
+			graph2.update([ 100, 1220, 550, 900, 700, 20, 999,]);
+		}, 1500);
+
+	}());</script>          
+<!-- ***********The Graph Code End*********** -->        
+
+<h3> HELLO THIS IS A TEST </h3>          
+          
+<!-- ***********The Total Entries Graph Code *********** -->
+          
+          <div id="graphDiv2"></div>
+	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+	<script src="/static/js/html5-canvas-bar-graph.js"></script>
+	<script>(function () {
+	
+		function createCanvas(divName) {
+			
+			var div = document.getElementById(divName);
+			var canvas = document.createElement('canvas');
+			div.appendChild(canvas);
+			if (typeof G_vmlCanvasManager != 'undefined') {
+				canvas = G_vmlCanvasManager.initElement(canvas);
+			}	
+			var ctx = canvas.getContext("2d");
+			return ctx;
+		}
+		
+	
+		
+		var ctx2 = createCanvas("graphDiv2");
+		
+		var graph2 = new BarGraph(ctx2);
+		graph2.margin = 2;
+		graph2.width = 850;
+		graph2.height = 150;
+		graph2.xAxisLabelArr = ["Burr", "Fedde", "Love", "Neihardt", "Selleck", "Abel", "Harper", "Schramm", "Smith", "Knoll", "U. Suites", "Eastside", "Kauffman", ];
+		setInterval(function () {
+			graph2.update([ 219, 53, 35, 435, 498, 1849, 741, 679, 757, 713, 901, 381, 88, ]);
+		}, 1500);
+
+	}());</script>  
+          
+<!-- ***********The Total Entries Graph Code End*********** -->         
+                
+          
+          
+          
+          
+      </section>
+      <footer>
+        <p><small>A special thanks to Amanda Orr for helping me get this data. </small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>

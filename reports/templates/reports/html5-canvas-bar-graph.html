@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+	<title>HTML5 Bar Graph Example</title>
+</head>
+
+<body>
+
+	<div id="graphDiv2"></div>
+	<!--[if IE]><script src="excanvas.js"></script><![endif]-->
+	<script src="html5-canvas-bar-graph.js"></script>
+	<script>(function () {
+	
+		function createCanvas(divName) {
+			
+			var div = document.getElementById(divName);
+			var canvas = document.createElement('canvas');
+			div.appendChild(canvas);
+			if (typeof G_vmlCanvasManager != 'undefined') {
+				canvas = G_vmlCanvasManager.initElement(canvas);
+			}	
+			var ctx = canvas.getContext("2d");
+			return ctx;
+		}
+		
+	
+		
+		var ctx2 = createCanvas("graphDiv2");
+		
+		var graph2 = new BarGraph(ctx2);
+		graph2.margin = 2;
+		graph2.width = 450;
+		graph2.height = 150;
+		graph2.xAxisLabelArr = ["Sun.", "Mon.", "Tues.", "Wed.", "Thurs.", "Fri.", "Sat.",];
+		setInterval(function () {
+			graph2.update([ 75, 20, 20, 20, 20, 20, 20,]);
+		}, 1500);
+
+	}());</script>
+</body>
+</html>
